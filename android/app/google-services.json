@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "716253569962",
+    "project_id": "gain-wealth",
+    "storage_bucket": "gain-wealth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716253569962:android:1288e7e146d5e77a1101d3",
+        "android_client_info": {
+          "package_name": "com.gainw.wealth.loan.hanbgxs.seath.gain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716253569962-ubc7gtvvlsmjemcsek0obj2uupj4ep0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gainw.wealth.loan.hanbgxs.seath.gain",
+            "certificate_hash": "2933367f6dfce55ad4f8888b06d7316699ec1d4c"
+          }
+        },
+        {
+          "client_id": "716253569962-cnoubg8030h7mlt8o2u3f607dv8mfblp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqynd8wTrW6fK7yexOGa2Oau440HUddE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716253569962-cnoubg8030h7mlt8o2u3f607dv8mfblp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
