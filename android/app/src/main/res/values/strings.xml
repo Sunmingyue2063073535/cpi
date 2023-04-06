@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gain Wealth</string>
+    <string name="facebook_app_id">1042821570010158</string>
+    <string name="fb_login_protocol_scheme">1042821570010158</string>
+    <color name="ps_color_20">#20000000</color>
+    <string name="title_activity_main">Gain Wealth</string>
+    <string name="package_name">com.gainw.wealth.loan.hanbgxs.seath.gain</string>
+    <string name="custom_url_scheme">com.gainw.wealth.loan.hanbgxs.seath.gain</string>
+</resources>

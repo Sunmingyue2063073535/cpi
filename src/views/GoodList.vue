@@ -25,7 +25,7 @@
                             <div class="fenshu">5.0</div>
                         </div>
                     </div>
-                    <div class="lb-btn"><span>download</span></div>
+                    <div class="lb-btn" @click="doClick"><span>download</span></div>
                 </div>
             </li>
         </ul>
@@ -33,7 +33,16 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
 
+        }
+    },
+    methods: {
+        async doClick() {
+            this.$router.push('/ocr')
+        }
+    }
 }
 </script>
 <style lang="less" scoped>
