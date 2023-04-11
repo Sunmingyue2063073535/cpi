@@ -15,6 +15,10 @@ module.exports = defineConfig({
       }
     }
   },
+  // devServer: {
+  //   // 代理配置
+  //   proxy: 'https://app.fidelitywallet.life'
+  // },
   configureWebpack: {
     resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },
     module: {

@@ -1,13 +1,10 @@
 package com.gainw.wealth.loan.hanbgxs.seath.gain;
 
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
-
-import androidx.core.app.ActivityCompat;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
@@ -15,27 +12,18 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @CapacitorPlugin(name = "MyEcho")
-public class EchoPlugin extends Plugin {
-    public static final int CAMERA_REQUEST_CODE = 123;
-
-    public static final int READ_REQUEST_CODE = 1;
-    public static PluginCall newCall;
+public class RdjdjksEcho extends Plugin {
     @PluginMethod()
     public void echo(PluginCall call) {
         JSObject ret = new JSObject();
-        String value = call.getString("key");
+        String value = call.getString("k");
         if (value.equals("getHeaderToken")) {
-            ret.put("gaId", getGaid(getContext()));
-            ret.put("androidId", getAndroidID(getContext()));
-            ret.put("appVersionName", getAppVersionName(getContext()));
+            ret.put("ga", getGaid(getContext()));
+            ret.put("and", getAndroidID(getContext()));
+            ret.put("appV", getAppVersionName(getContext()));
         }
         call.resolve(ret);
     }
@@ -60,7 +48,6 @@ public class EchoPlugin extends Plugin {
     public static String getAppVersionName(Context context) {
         String versionName = "";
         try {
-            // ---get the package info---
             PackageManager pm = context.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;

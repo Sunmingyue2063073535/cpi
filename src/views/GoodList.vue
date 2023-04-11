@@ -2,18 +2,18 @@
     <div class="goodList">
         <div class="gl-title">recommended to you</div>
         <ul class="liebiao">
-            <li v-for="i in 10">
+            <li v-for="item in list" :key="item.id">
                 <!-- banner图 -->
                 <div class="lb-banner">
-                    <img src="../assets/banner.png" alt="">
+                    <img :src="toIcon(item.iconBig)" alt="">
                 </div>
                 <!-- 详情 -->
-                <div class="lb-content">
+                <div class=" lb-content">
                     <div class="lb-icon">
-                        <img src="../assets/icon.png" alt="">
+                        <img :src="toIcon(item.icon)" alt="">
                     </div>
                     <div class="lb-desc">
-                        <div class="lb-name">YES Accouloan</div>
+                        <div class="lb-name">{{ item.productName }}</div>
                         <div class="lb-pinfen">
                             <div class="lb-pinfen-icon">
                                 <img src="../assets/start.png" alt="">
@@ -22,26 +22,48 @@
                                 <img src="../assets/start.png" alt="">
                                 <img src="../assets/start.png" alt="">
                             </div>
-                            <div class="fenshu">5.0</div>
+                            <div class="fenshu">{{ item.googleScore }}.0</div>
                         </div>
                     </div>
-                    <div class="lb-btn" @click="doClick"><span>download</span></div>
+                    <div class="lb-btn" @click="doClick(item)"><span>download</span></div>
                 </div>
             </li>
         </ul>
     </div>
 </template>
 <script>
+import { tuijianAppApi } from "../api";
+import { jiami, jiemi } from "../utils/AESKEY.js";
 export default {
     data() {
         return {
-
+            //app列表
+            list: []
         }
     },
     methods: {
-        async doClick() {
-            this.$router.push('/ocr')
+        //图标链接
+        toIcon(icon) {
+            return `https://app.fidelitywallet.life/lt-image/resize/0x0/${icon}`
+        },
+        async doClick(item) {
+            window.location.href = item.url
+        },
+        //获取推荐app列表
+        async getAppList() {
+            const f = {
+                query: {
+                    pageNo: 1,
+                    pageSize: 10
+                }
+            }
+            const res = await tuijianAppApi(jiami(f))
+            this.list = jiemi(res.data).page.content
+            console.log(jiemi(res.data))
         }
+    },
+    created() {
+        this.getAppList()
     }
 }
 </script>
@@ -59,7 +81,8 @@ export default {
                 height: (150/@a);
 
                 img {
-                    width: 100%;
+                    width: (320/@a);
+                    height: (150/@a);
                 }
             }
 

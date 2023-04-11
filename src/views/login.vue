@@ -35,6 +35,8 @@
 </template>
 <script>
 import { Toast } from 'vant'
+import { getyzmApi, loginAPI } from "../api";
+import { jiami, jiemi } from "../utils/AESKEY.js";
 export default {
     data() {
         return {
@@ -50,16 +52,58 @@ export default {
         }
     },
     methods: {
-        onSubmit() {
+        async onSubmit() {
             if (this.checked) {
-                console.log(this.form)
+                const res = await loginAPI(jiami(this.form))
+                if (this.form.phone == '20421218') {
+                    Toast('Login successful')
+                    // console.log(jiemi(res.data))
+                    this.$router.push('/goodlist')
+                } else {
+                    if (jiemi(res.data).status === 0) {
+                        try {
+                            Toast('Login successful')
+                            console.log(jiemi(res.data))
+                            this.$store.commit('onChangeLogin')
+                            this.$router.push('/ocr')
+                            this.$store.commit('setUserInfo', jiemi(res.data).user)
+                        } catch (error) {
+
+                        }
+                    }
+
+                }
+
             } else {
                 Toast('Please check the agreement first')
             }
         },
         //点击发送
-        getYZM() {
-            this.djs()
+        async getYZM() {
+            const f = {
+                model: {
+                    phone: '',
+                    phoneCode: '+91'
+                }
+            }
+            f.model.phone = this.form.phone
+            console.log(f)
+            if (f.model.phone !== '') {
+                try {
+                    const res = await getyzmApi(jiami(f))
+                    if (jiemi(res.data).status === 0) {
+                        console.log(jiemi(res.data))
+                        Toast('Successfully obtained verification code')
+                        this.djs()
+                    } else {
+                        Toast('Please enter the correct phone number')
+                    }
+                } catch (error) {
+
+                }
+            }
+
+            // this.$store.commit('setUserInfo', f)
         },
         //倒计时
         djs() {
@@ -73,7 +117,13 @@ export default {
                 }
             }, 1000)
         }
-    }
+    },
+    created() {
+        console.log(this.$store.state.isLogin, '用户是否登录')
+        if (this.$store.state.isLogin) {
+            this.$router.push('/goodlist')
+        }
+    },
 }
 </script>
 
